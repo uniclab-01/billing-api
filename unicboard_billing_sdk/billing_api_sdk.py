@@ -48,7 +48,7 @@ class BillingApiSdk:
             f'{self._api_billing_url}/'
             f'api/v1/devices/info',
             headers=auth_header,
-            json={device_ids: device_ids_str},
+            json={'device_ids': device_ids_str},
         )
         response.raise_for_status()
         return get_device_list_info_structure(response.json())
