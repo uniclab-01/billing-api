@@ -40,6 +40,19 @@ class BillingApiSdk:
         response.raise_for_status()
         return get_device_list_info_structure(response.json())
 
+    def get_device_list_by_id_info(self, device_ids: List[UUID]) -> GetDeviceListInfoResponse:
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        device_ids_str = [str(device_id) for device_id in device_ids]
+        response = requests.post(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/info',
+            headers=auth_header,
+            json={device_ids: device_ids_str},
+        )
+        response.raise_for_status()
+        return get_device_list_info_structure(response.json())
+
     def get_device_info(self, device_id: UUID) -> GetDeviceInfoResponse:
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
