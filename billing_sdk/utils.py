@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from response_models import GetDeviceValueResponse, GetDeviceChannelValuePayloadResponse, \
+from billing_sdk.response_models import GetDeviceValueResponse, GetDeviceChannelValuePayloadResponse, \
     GetDeviceListInfoPayloadResponse, DataGatewayNetworkResponseModel, DeviceChannelResponseModel, NetworkResponseModel, \
     ProtokolResponseModel, DataGatewayResponseModel, DeviceManufacturerResponseModel, DeviceModificationResponseModel, \
     DeviceModificationTypeResponseModel, DeviceMeteringType, GetDeviceInfoResponse, GetDeviceListInfoResponse
