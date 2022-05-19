@@ -11,8 +11,8 @@ from unicboard_billing_sdk.utils import get_device_value_structure, get_device_i
 class BillingApiSdk:
 
     def __init__(self, api_billing_url: str, api_token: str) -> None:
-        self._api_billing_url = api_token
-        self._api_token = api_billing_url
+        self._api_billing_url = api_billing_url
+        self._api_token = api_token
 
     def get_device_list_info(
             self,
@@ -23,8 +23,8 @@ class BillingApiSdk:
     ) -> GetDeviceListInfoResponse:
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
         query_params: Dict[str, Any] = {
-            "filters": filters,
-            "sorts": sorts,
+            "filter": filters,
+            "sort": sorts,
         }
         if limit is not None:
             query_params['limit'] = limit
