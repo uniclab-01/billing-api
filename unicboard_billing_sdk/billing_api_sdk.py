@@ -4,8 +4,8 @@ from uuid import UUID
 
 import requests
 
-from billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, GetDeviceValueResponse
-from billing_sdk.utils import get_device_value_structure, get_device_info_structure, get_device_list_info_structure
+from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, GetDeviceValueResponse
+from unicboard_billing_sdk.utils import get_device_value_structure, get_device_info_structure, get_device_list_info_structure
 
 
 class BillingApiSdk:

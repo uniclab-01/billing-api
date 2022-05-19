@@ -9,7 +9,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='billing-api',
-    version='0.0.2',
+    version='0.0.3',
     description='Unicboard billing api',
     author='Unic-lab',
     long_description=long_description,
@@ -17,7 +17,7 @@ setup(
     author_email='a.brilon@unic-lab.by',
     url='https://github.com/uniclab-01/billing-api',
     package_data={'': ['*.yml'], },
-    packages=find_packages(include=['billing_sdk*']),
+    packages=find_packages(include=['unicboard_billing_sdk*']),
     include_package_data=True,
     license="MIT",
     classifiers=[

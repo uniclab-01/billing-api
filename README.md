@@ -9,8 +9,9 @@ Python >=3.6
 python -m pip unicboard_billing_api
 
 ## usage:
+
 ```python
-from unicboard_billing_api import BillingApiSdk
+from unicboard_billing_sdk import BillingApiSdk
 
 Api = BillingApiSdk(
     api_billing_url="unicboard url",
