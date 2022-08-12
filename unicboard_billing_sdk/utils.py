@@ -7,6 +7,15 @@ from unicboard_billing_sdk.response_models import GetDeviceValueResponse, GetDev
 
 
 def get_device_info_payload_structure(payload: Dict[str, Any]):
+    """
+    It takes a dictionary and returns a GetDeviceListInfoPayloadResponse object.
+
+    Args:
+      payload (Dict[str, Any]): Dict[str, Any] - this is the payload that is returned from the API
+
+    Returns:
+      GetDeviceListInfoPayloadResponse: Device information
+    """
     data_gateway_network_device = payload.pop('data_gateway_network_device')
     network = data_gateway_network_device.pop('network')
     data_gateway = network.pop('data_gateway')
@@ -39,6 +48,15 @@ def get_device_info_payload_structure(payload: Dict[str, Any]):
 
 
 def get_device_info_structure(response: Dict[str, Any]) -> GetDeviceInfoResponse:
+    """
+    It takes a dictionary and returns a GetDeviceInfoResponse object
+
+    Args:
+      response (Dict[str, Any]): Dict[str, Any]
+
+    Returns:
+      GetDeviceInfoResponse: Device information list
+    """
     payload = response.pop('payload')
     return GetDeviceInfoResponse(
         **response,
@@ -47,6 +65,15 @@ def get_device_info_structure(response: Dict[str, Any]) -> GetDeviceInfoResponse
 
 
 def get_device_list_info_structure(response: Dict[str, Any]) -> GetDeviceListInfoResponse:
+    """
+    It takes a dictionary and returns a GetDeviceListInfoResponse object
+
+    Args:
+      response (Dict[str, Any]): Dict[str, Any]
+
+    Returns:
+      GetDeviceListInfoResponse: Device information list
+    """
     payload = response.pop('payload')
     return GetDeviceListInfoResponse(
         **response,
@@ -55,6 +82,15 @@ def get_device_list_info_structure(response: Dict[str, Any]) -> GetDeviceListInf
 
 
 def get_device_value_structure(response: Dict[str, Any]) -> GetDeviceValueResponse:
+    """
+    It takes a dictionary and returns a `GetDeviceValueResponse` object
+
+    Args:
+      response (Dict[str, Any]): Dict[str, Any]
+
+    Returns:
+      GetDeviceValueResponse: Device information list
+    """
     payload = response.pop('payload')
     return GetDeviceValueResponse(
         **response,

@@ -1,0 +1,20 @@
+site_name: Billing Api Documentation
+
+repo_url: https://github.com/uniclab-01/billing-api
+
+theme:
+  name: "material"
+
+plugins:
+  - search
+  - mkdocstrings
+
+extra:
+  search:
+  language: 'en, ru'
+
+nav:
+  - Home:
+      index.md
+  - Billing api:
+      billing_api_sdk.md
