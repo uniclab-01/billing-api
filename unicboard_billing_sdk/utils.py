@@ -59,7 +59,8 @@ def get_device_info_structure(response: Dict[str, Any]) -> GetDeviceInfoResponse
     """
     payload = response.pop('payload')
     return GetDeviceInfoResponse(
-        **response,
+        errors=response['errors'],
+        ok=response['ok'],
         payload=get_device_info_payload_structure(payload)
     )
 
@@ -76,7 +77,10 @@ def get_device_list_info_structure(response: Dict[str, Any]) -> GetDeviceListInf
     """
     payload = response.pop('payload')
     return GetDeviceListInfoResponse(
-        **response,
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
         payload=[get_device_info_payload_structure(item) for item in payload]
     )
 
@@ -93,7 +97,10 @@ def get_device_value_structure(response: Dict[str, Any]) -> GetDeviceValueRespon
     """
     payload = response.pop('payload')
     return GetDeviceValueResponse(
-        **response,
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
         payload=[GetDeviceChannelValuePayloadResponse(**item) for item in payload]
     )
 
