@@ -3,7 +3,8 @@ from typing import Dict, Any
 from unicboard_billing_sdk.response_models import GetDeviceValueResponse, GetDeviceChannelValuePayloadResponse, \
     GetDeviceListInfoPayloadResponse, DataGatewayNetworkResponseModel, DeviceChannelResponseModel, NetworkResponseModel, \
     ProtokolResponseModel, DataGatewayResponseModel, DeviceManufacturerResponseModel, DeviceModificationResponseModel, \
-    DeviceModificationTypeResponseModel, DeviceMeteringType, GetDeviceInfoResponse, GetDeviceListInfoResponse
+    DeviceModificationTypeResponseModel, DeviceMeteringType, GetDeviceInfoResponse, GetDeviceListInfoResponse, \
+    DeviceMeterResponseModel
 
 
 def get_device_info_payload_structure(payload: Dict[str, Any]):
@@ -35,7 +36,12 @@ def get_device_info_payload_structure(payload: Dict[str, Any]):
                 ),
                 protocol=ProtokolResponseModel(**protocol),
             ),
-            device_channel=[DeviceChannelResponseModel(**device_channel) for device_channel in device_channels],
+            device_channel=[DeviceChannelResponseModel(
+                inactivity_limit=device_channel['inactivity_limit'],
+                last_date_event_no_data=device_channel['last_date_event_no_data'],
+                serial_number=device_channel['serial_number'],
+                device_meters=[DeviceMeterResponseModel(**device_meter) for device_meter in device_channel['device_meter']],
+            ) for device_channel in device_channels],
             device_manufacturer=DeviceManufacturerResponseModel(**device_manufacturer),
             device_modification=DeviceModificationResponseModel(
                 **device_modification,

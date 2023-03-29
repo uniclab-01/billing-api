@@ -12,6 +12,7 @@ class DataGatewayResponseModel(NamedTuple):
     """
     name: str
 
+
 class NetworkResponseModel(NamedTuple):
     """
     Internal network
@@ -25,6 +26,7 @@ class NetworkResponseModel(NamedTuple):
     name: str
     type_network: str
 
+
 class ProtokolResponseModel(NamedTuple):
     """
     Protocol's name
@@ -33,6 +35,7 @@ class ProtokolResponseModel(NamedTuple):
         name (str): protocol's name
     """
     name: str
+
 
 class DataGatewayNetworkResponseModel(NamedTuple):
     """
@@ -47,6 +50,23 @@ class DataGatewayNetworkResponseModel(NamedTuple):
     protocol: ProtokolResponseModel
     mac: int
 
+
+class DeviceMeterResponseModel(NamedTuple):
+    """
+    Device meter information
+
+    Parameters:
+        last_value (float): last counter value (cubic meter(m3))
+        last_value_date (datetime): date of last receipt of readings (datetime)
+        unit_multiplier (float): recalculates measurements (between database and user)
+        value_multiplier (float): recalculates measurements (between meter and database)
+    """
+    last_value: Optional[float]
+    last_value_date: Optional[datetime]
+    unit_multiplier: float
+    value_multiplier: float
+
+
 class DeviceChannelResponseModel(NamedTuple):
     """
     Device channel information
@@ -54,19 +74,13 @@ class DeviceChannelResponseModel(NamedTuple):
     Parameters:
         inactivity_limit (int): idle time to create a non-arrival data event (second)
         last_date_event_no_data (datetime): last date of non-arrival event
-        last_value (float): last counter value (cubic meter(m3))
-        last_value_date (datetime): date of last receipt of readings (datetime)
         serial_number (int): channel serial number (1,2,3,4,5)
-        unit_multiplier (float): recalculates measurements (between database and user)
-        value_multiplier (float): recalculates measurements (between meter and database)
     """
     inactivity_limit: int
     last_date_event_no_data: Optional[datetime]
-    last_value: Optional[float]
-    last_value_date: Optional[datetime]
     serial_number: int
-    unit_multiplier: float
-    value_multiplier: float
+    device_meters: List[DeviceMeterResponseModel]
+
 
 class DeviceManufacturerResponseModel(NamedTuple):
     """
@@ -76,6 +90,7 @@ class DeviceManufacturerResponseModel(NamedTuple):
         name (str): manufacturer's name
     """
     name: str
+
 
 class DeviceMeteringType(NamedTuple):
     """
@@ -89,6 +104,7 @@ class DeviceMeteringType(NamedTuple):
     name_en: str
     name_ru: str
     sys_name: str
+
 
 class DeviceModificationTypeResponseModel(NamedTuple):
     """
@@ -106,6 +122,7 @@ class DeviceModificationTypeResponseModel(NamedTuple):
     sys_name: str
     type: str
 
+
 class DeviceModificationResponseModel(NamedTuple):
     """
     Device modification
@@ -116,6 +133,7 @@ class DeviceModificationResponseModel(NamedTuple):
     """
     device_modification_type: DeviceModificationTypeResponseModel
     name: str
+
 
 class GetDeviceListInfoPayloadResponse(NamedTuple):
     """
@@ -142,6 +160,7 @@ class GetDeviceListInfoPayloadResponse(NamedTuple):
     id: UUID
     manufacturer_serial_number: str
 
+
 class GetDeviceListInfoResponse(NamedTuple):
     """
     Device information list
@@ -159,6 +178,7 @@ class GetDeviceListInfoResponse(NamedTuple):
     total_count: int
     payload: List[GetDeviceListInfoPayloadResponse]
 
+
 class GetDeviceInfoResponse(NamedTuple):
     """
     Device information list
@@ -171,6 +191,7 @@ class GetDeviceInfoResponse(NamedTuple):
     errors: List[Any]
     ok: bool
     payload: GetDeviceListInfoPayloadResponse
+
 
 class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     """
@@ -192,6 +213,7 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     value: Optional[float]
     value_raw: Optional[float]
     value_type: str
+
 
 class GetDeviceValueResponse(NamedTuple):
     """
