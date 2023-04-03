@@ -135,7 +135,7 @@ class BillingApiSdk:
 
         response = requests.post(
             f'{self._api_billing_url}/'
-            f'/api/v1/devices/values',
+            f'api/v1/devices/values',
             params=query_params,
             headers=auth_header,
             json={"devices_id": devices_id},

@@ -6,7 +6,7 @@ Python >=3.6
 
 ## install:
 
-python -m pip unicboard_billing_api
+python -m pip install unicboard_billing_sdk
 
 ## usage:
 
