@@ -7,7 +7,9 @@ theme:
 
 plugins:
   - search
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        - python
 
 extra:
   search:
