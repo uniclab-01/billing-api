@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import NamedTuple, List, Any, Optional
+from typing import NamedTuple, List, Any, Optional, Dict
 from uuid import UUID
 
 
@@ -213,6 +213,60 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     value: Optional[float]
     value_raw: Optional[float]
     value_type: str
+    kind: str
+    tariff_number: int
+
+
+class GetDeviceListBatteryLevelPayloadResponse(NamedTuple):
+    """
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
+
+
+class GetDeviceListClockPayloadResponse(NamedTuple):
+    """
+    """
+    device_id: UUID
+    clock_id: int
+    device_clock: datetime
+    date: datetime
+    device_tz: str
+    tz_offset_s: int
+    out_of_sync_s: float
+    out_of_sync_type: str
+
+
+class GetDeviceListEventPayloadResponse(NamedTuple):
+    """
+    """
+    device_id: UUID
+    channel_id: Optional[UUID]
+    type: str
+    date: datetime
+    value: Optional[float]
+    data: Dict[str, Any]
+
+
+class GetDeviceListProfilePayloadResponse(NamedTuple):
+    """
+    """
+    date_start: datetime
+    date_end: datetime
+    device_id: UUID
+    profile_kind: str
+    granularity_s: str
+    values_count: int
+    values: List[float]
+
+
+class GetDeviceListTemperaturePayloadResponse(NamedTuple):
+    """
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
 
 
 class GetDeviceValueResponse(NamedTuple):
@@ -231,3 +285,53 @@ class GetDeviceValueResponse(NamedTuple):
     ok: bool
     total_count: int
     payload: List[GetDeviceChannelValuePayloadResponse]
+
+
+class GetDeviceBatteryLevelResponse(NamedTuple):
+    """
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListBatteryLevelPayloadResponse]
+
+
+class GetDeviceClockResponse(NamedTuple):
+    """
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListClockPayloadResponse]
+
+
+class GetDeviceEventResponse(NamedTuple):
+    """
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListEventPayloadResponse]
+
+
+class GetDeviceProfileResponse(NamedTuple):
+    """
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListProfilePayloadResponse]
+
+
+class GetDeviceTemperatureResponse(NamedTuple):
+    """
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListTemperaturePayloadResponse]

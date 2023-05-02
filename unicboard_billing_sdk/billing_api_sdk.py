@@ -4,8 +4,12 @@ from uuid import UUID
 
 import requests
 
-from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, GetDeviceValueResponse
-from unicboard_billing_sdk.utils import get_device_value_structure, get_device_info_structure, get_device_list_info_structure
+from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, \
+    GetDeviceValueResponse, GetDeviceBatteryLevelResponse, GetDeviceClockResponse, GetDeviceEventResponse, \
+    GetDeviceProfileResponse, GetDeviceTemperatureResponse
+from unicboard_billing_sdk.utils import get_device_value_structure, get_device_info_structure, \
+    get_device_list_info_structure, get_device_battery_level_structure, get_device_clock_structure, \
+    get_device_event_structure, get_device_profile_structure, get_device_temperature_structure
 
 
 # It's a wrapper around the billing API
@@ -142,3 +146,68 @@ class BillingApiSdk:
         )
         response.raise_for_status()
         return get_device_value_structure(response.json())
+
+    def get_device_battery_level(self, device_id: UUID) -> GetDeviceBatteryLevelResponse:
+        """
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/battery-level',
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_battery_level_structure(response.json())
+
+    def get_device_clock(self, device_id: UUID) -> GetDeviceClockResponse:
+        """
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/clocks',
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_clock_structure(response.json())
+
+    def get_device_event(self, device_id: UUID) -> GetDeviceEventResponse:
+        """
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/events',
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_event_structure(response.json())
+
+    def get_device_profile(self, device_id: UUID) -> GetDeviceProfileResponse:
+        """
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/profiles',
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_profile_structure(response.json())
+
+    def get_device_temperature(self, device_id: UUID) -> GetDeviceTemperatureResponse:
+        """
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/profiles',
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_temperature_structure(response.json())
