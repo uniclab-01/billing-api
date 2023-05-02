@@ -5,11 +5,11 @@ repo_url: https://github.com/uniclab-01/billing-api
 theme:
   name: material
 
-plugins:
- - mkdocstrings:
-    handlers:
-      - search.index
-      - markdown.typed_ast
+#plugins:
+#  - mkdocstrings:
+#    handlers:
+#      search.index: {}
+#      markdown.typed_ast: {}
 
 extra:
   search:
