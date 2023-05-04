@@ -217,58 +217,6 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     tariff_number: int
 
 
-class GetDeviceListBatteryLevelPayloadResponse(NamedTuple):
-    """
-    """
-    device_id: UUID
-    date: datetime
-    value: Optional[float]
-
-
-class GetDeviceListClockPayloadResponse(NamedTuple):
-    """
-    """
-    device_id: UUID
-    clock_id: int
-    device_clock: datetime
-    date: datetime
-    device_tz: str
-    tz_offset_s: int
-    out_of_sync_s: float
-    out_of_sync_type: str
-
-
-class GetDeviceListEventPayloadResponse(NamedTuple):
-    """
-    """
-    device_id: UUID
-    channel_id: Optional[UUID]
-    type: str
-    date: datetime
-    value: Optional[float]
-    data: Dict[str, Any]
-
-
-class GetDeviceListProfilePayloadResponse(NamedTuple):
-    """
-    """
-    date_start: datetime
-    date_end: datetime
-    device_id: UUID
-    profile_kind: str
-    granularity_s: str
-    values_count: int
-    values: List[float]
-
-
-class GetDeviceListTemperaturePayloadResponse(NamedTuple):
-    """
-    """
-    device_id: UUID
-    date: datetime
-    value: Optional[float]
-
-
 class GetDeviceValueResponse(NamedTuple):
     """
     Device channel information list
@@ -287,8 +235,30 @@ class GetDeviceValueResponse(NamedTuple):
     payload: List[GetDeviceChannelValuePayloadResponse]
 
 
+class GetDeviceListBatteryLevelPayloadResponse(NamedTuple):
+    """
+    Device battery level values
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date (datetime): date of value
+        value (float): value of battery level
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
+
+
 class GetDeviceBatteryLevelResponse(NamedTuple):
     """
+    Device battery level list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListBatteryLevelPayloadResponse](GetDeviceListBatteryLevelPayloadResponse.md)
     """
     count: int
     errors: List[Any]
@@ -297,8 +267,32 @@ class GetDeviceBatteryLevelResponse(NamedTuple):
     payload: List[GetDeviceListBatteryLevelPayloadResponse]
 
 
+class GetDeviceListClockPayloadResponse(NamedTuple):
+    """
+    Device clock info
+
+    Parameters:
+    """
+    device_id: UUID
+    clock_id: int
+    device_clock: datetime
+    date: datetime
+    device_tz: str
+    tz_offset_s: int
+    out_of_sync_s: float
+    out_of_sync_type: str
+
+
 class GetDeviceClockResponse(NamedTuple):
     """
+    Device clock info list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListClockPayloadResponse](GetDeviceListClockPayloadResponse.md)
     """
     count: int
     errors: List[Any]
@@ -307,8 +301,34 @@ class GetDeviceClockResponse(NamedTuple):
     payload: List[GetDeviceListClockPayloadResponse]
 
 
+class GetDeviceListEventPayloadResponse(NamedTuple):
+    """
+    Device events
+
+    Parameters:
+        device_id (UUID): device system identifier
+        type (str): type of event
+        date (datetime): date of event
+        value (float): value of event
+        data (json): additional data of event
+    """
+    device_id: UUID
+    type: str
+    date: datetime
+    value: Optional[float]
+    data: Dict[str, Any]
+
+
 class GetDeviceEventResponse(NamedTuple):
     """
+    Device events list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListEventPayloadResponse](GetDeviceListEventPayloadResponse.md)
     """
     count: int
     errors: List[Any]
@@ -317,8 +337,38 @@ class GetDeviceEventResponse(NamedTuple):
     payload: List[GetDeviceListEventPayloadResponse]
 
 
+class GetDeviceListProfilePayloadResponse(NamedTuple):
+    """
+    Device events
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date_start (datetime): date and time profile start
+        date_end (str): date and time profile end
+        profile_kind (float): kind of profile
+        granularity_s: the time for which each value in field "values" is responsible, from 1 second to 60 minutes
+        values_count (int): count values in field "values" (date_start - date_end = granularity_s * values_count)
+        values (list of floats): list of profile values
+    """
+    device_id: UUID
+    date_start: datetime
+    date_end: datetime
+    profile_kind: str
+    granularity_s: str
+    values_count: int
+    values: List[float]
+
+
 class GetDeviceProfileResponse(NamedTuple):
     """
+    Device profile list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceProfileResponse](GetDeviceProfileResponse.md)
     """
     count: int
     errors: List[Any]
@@ -327,8 +377,30 @@ class GetDeviceProfileResponse(NamedTuple):
     payload: List[GetDeviceListProfilePayloadResponse]
 
 
+class GetDeviceListTemperaturePayloadResponse(NamedTuple):
+    """
+    Device temperature values
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date (datetime): date of value
+        value (float): value of temperature
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
+
+
 class GetDeviceTemperatureResponse(NamedTuple):
     """
+    Device temperature info list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListTemperaturePayloadResponse](GetDeviceListTemperaturePayloadResponse.md)
     """
     count: int
     errors: List[Any]
