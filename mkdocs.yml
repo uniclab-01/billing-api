@@ -6,13 +6,14 @@ theme:
   name: material
 
 plugins:
- - mkdocstrings:
-    default_handler:
-     python
+  - mkdocstrings:
     handlers:
-      python:
-        output: markdown
-
+      custom_handler:
+        handler_config_option:
+          yes
+        options:
+          some_config_option: "a"
+          other_config_option: 0
 extra:
   search:
   language: 'en, ru'
