@@ -1,1 +1,1 @@
-::: unicboard_billing_sdk.response_models.DataGatewayNetworkResponseModel handler: python
+::: unicboard_billing_sdk.response_models.DataGatewayNetworkResponseModel

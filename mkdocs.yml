@@ -5,12 +5,12 @@ repo_url: https://github.com/uniclab-01/billing-api
 theme:
   name: material
 
-plugins:
- - mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        output: markdown
+#plugins:
+# - mkdocstrings:
+#    default_handler: python
+#    handlers:
+#      python:
+#        output: markdown
 
 extra:
   search:
