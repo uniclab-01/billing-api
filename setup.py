@@ -9,7 +9,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='unicboard_billing_sdk',
-    version='1.0.1',
+    version='2.0.0',
     description='Unicboard billing api',
     author='Unic-lab',
     long_description=long_description,
