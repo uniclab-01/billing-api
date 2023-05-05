@@ -206,7 +206,7 @@ class BillingApiSdk:
 
         response = requests.get(
             f'{self._api_billing_url}/'
-            f'api/v1/devices/{str(device_id)}/profiles',
+            f'api/v1/devices/{str(device_id)}/temperatures',
             headers=auth_header,
         )
         response.raise_for_status()

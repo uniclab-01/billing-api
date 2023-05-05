@@ -272,6 +272,18 @@ class GetDeviceListClockPayloadResponse(NamedTuple):
     Device clock info
 
     Parameters:
+        device_id (UUID): device system identifier
+        clock_id (int): device clock identifier
+        device_clock (datetime): time on the device linked to a specific device clock
+        date (datetime): date of receipt data
+        device_tz (str): device time zone
+        tz_offset_s (int): difference between server and device timezone
+        out_of_sync_s (float): time difference of the clock in seconds from the current time
+        out_of_sync_type (str): discrepancy type:
+            'synced' - less than 5 seconds
+            'out_of_sync_warning' - less than 10 seconds
+            'out_of_sync_critical' - less than or equal to 15 seconds
+            'unsynchronized' - more than 15 seconds
     """
     device_id: UUID
     clock_id: int
@@ -316,7 +328,7 @@ class GetDeviceListEventPayloadResponse(NamedTuple):
     type: str
     date: datetime
     value: Optional[float]
-    data: Dict[str, Any]
+    data: Optional[Dict[str, Any]]
 
 
 class GetDeviceEventResponse(NamedTuple):
