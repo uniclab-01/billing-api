@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import NamedTuple, List, Any, Optional
+from typing import NamedTuple, List, Any, Optional, Dict
 from uuid import UUID
 
 
@@ -213,6 +213,8 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     value: Optional[float]
     value_raw: Optional[float]
     value_type: str
+    kind: str
+    tariff_number: int
 
 
 class GetDeviceValueResponse(NamedTuple):
@@ -231,3 +233,189 @@ class GetDeviceValueResponse(NamedTuple):
     ok: bool
     total_count: int
     payload: List[GetDeviceChannelValuePayloadResponse]
+
+
+class GetDeviceListBatteryLevelPayloadResponse(NamedTuple):
+    """
+    Device battery level values
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date (datetime): date of value
+        value (float): value of battery level
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
+
+
+class GetDeviceBatteryLevelResponse(NamedTuple):
+    """
+    Device battery level list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListBatteryLevelPayloadResponse](GetDeviceListBatteryLevelPayloadResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListBatteryLevelPayloadResponse]
+
+
+class GetDeviceListClockPayloadResponse(NamedTuple):
+    """
+    Device clock info
+
+    Parameters:
+        device_id (UUID): device system identifier
+        clock_id (int): device clock identifier
+        device_clock (datetime): time on the device linked to a specific device clock
+        date (datetime): date of receipt data
+        device_tz (str): device time zone
+        tz_offset_s (int): difference between server and device timezone
+        out_of_sync_s (float): time difference of the clock in seconds from the current time
+        out_of_sync_type (str): discrepancy type:
+            'synced' - less than 5 seconds
+            'out_of_sync_warning' - less than 10 seconds
+            'out_of_sync_critical' - less than or equal to 15 seconds
+            'unsynchronized' - more than 15 seconds
+    """
+    device_id: UUID
+    clock_id: int
+    device_clock: datetime
+    date: datetime
+    device_tz: str
+    tz_offset_s: int
+    out_of_sync_s: float
+    out_of_sync_type: str
+
+
+class GetDeviceClockResponse(NamedTuple):
+    """
+    Device clock info list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListClockPayloadResponse](GetDeviceListClockPayloadResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListClockPayloadResponse]
+
+
+class GetDeviceListEventPayloadResponse(NamedTuple):
+    """
+    Device events
+
+    Parameters:
+        device_id (UUID): device system identifier
+        type (str): type of event
+        date (datetime): date of event
+        value (float): value of event
+        data (json): additional data of event
+    """
+    device_id: UUID
+    type: str
+    date: datetime
+    value: Optional[float]
+    data: Optional[Dict[str, Any]]
+
+
+class GetDeviceEventResponse(NamedTuple):
+    """
+    Device events list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListEventPayloadResponse](GetDeviceListEventPayloadResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListEventPayloadResponse]
+
+
+class GetDeviceListProfilePayloadResponse(NamedTuple):
+    """
+    Device events
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date_start (datetime): date and time profile start
+        date_end (str): date and time profile end
+        profile_kind (float): kind of profile
+        granularity_s: the time for which each value in field "values" is responsible, from 1 second to 60 minutes
+        values_count (int): count values in field "values" (date_start - date_end = granularity_s * values_count)
+        values (list of floats): list of profile values
+    """
+    device_id: UUID
+    date_start: datetime
+    date_end: datetime
+    profile_kind: str
+    granularity_s: str
+    values_count: int
+    values: List[float]
+
+
+class GetDeviceProfileResponse(NamedTuple):
+    """
+    Device profile list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceProfileResponse](GetDeviceProfileResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListProfilePayloadResponse]
+
+
+class GetDeviceListTemperaturePayloadResponse(NamedTuple):
+    """
+    Device temperature values
+
+    Parameters:
+        device_id (UUID): device system identifier
+        date (datetime): date of value
+        value (float): value of temperature
+    """
+    device_id: UUID
+    date: datetime
+    value: Optional[float]
+
+
+class GetDeviceTemperatureResponse(NamedTuple):
+    """
+    Device temperature info list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListTemperaturePayloadResponse](GetDeviceListTemperaturePayloadResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListTemperaturePayloadResponse]

@@ -4,10 +4,13 @@ from unicboard_billing_sdk.response_models import GetDeviceValueResponse, GetDev
     GetDeviceListInfoPayloadResponse, DataGatewayNetworkResponseModel, DeviceChannelResponseModel, NetworkResponseModel, \
     ProtokolResponseModel, DataGatewayResponseModel, DeviceManufacturerResponseModel, DeviceModificationResponseModel, \
     DeviceModificationTypeResponseModel, DeviceMeteringType, GetDeviceInfoResponse, GetDeviceListInfoResponse, \
-    DeviceMeterResponseModel
+    DeviceMeterResponseModel, GetDeviceBatteryLevelResponse, GetDeviceListBatteryLevelPayloadResponse, \
+    GetDeviceListClockPayloadResponse, GetDeviceListEventPayloadResponse, GetDeviceListProfilePayloadResponse, \
+    GetDeviceListTemperaturePayloadResponse, GetDeviceClockResponse, GetDeviceEventResponse, GetDeviceProfileResponse, \
+    GetDeviceTemperatureResponse
 
 
-def get_device_info_payload_structure(payload: Dict[str, Any]):
+def get_device_info_payload_structure(payload: Dict[str, Any]) -> GetDeviceListInfoPayloadResponse:
     """
     It takes a dictionary and returns a GetDeviceListInfoPayloadResponse object.
 
@@ -68,6 +71,71 @@ def get_device_info_structure(response: Dict[str, Any]) -> GetDeviceInfoResponse
         errors=response['errors'],
         ok=response['ok'],
         payload=get_device_info_payload_structure(payload)
+    )
+
+
+def get_device_battery_level_structure(response: Dict[str, Any]) -> GetDeviceBatteryLevelResponse:
+    """
+    """
+    payload = response.pop('payload')
+    return GetDeviceBatteryLevelResponse(
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
+        payload=[GetDeviceListBatteryLevelPayloadResponse(**item) for item in payload]
+    )
+
+
+def get_device_clock_structure(response: Dict[str, Any]) -> GetDeviceClockResponse:
+    """
+    """
+    payload = response.pop('payload')
+    return GetDeviceClockResponse(
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
+        payload=[GetDeviceListClockPayloadResponse(**item) for item in payload]
+    )
+
+
+def get_device_event_structure(response: Dict[str, Any]) -> GetDeviceEventResponse:
+    """
+    """
+    payload = response.pop('payload')
+    return GetDeviceEventResponse(
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
+        payload=[GetDeviceListEventPayloadResponse(**item) for item in payload]
+    )
+
+
+def get_device_profile_structure(response: Dict[str, Any]) -> GetDeviceProfileResponse:
+    """
+    """
+    payload = response.pop('payload')
+    return GetDeviceProfileResponse(
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
+        payload=[GetDeviceListProfilePayloadResponse(**item) for item in payload]
+    )
+
+
+def get_device_temperature_structure(response: Dict[str, Any]) -> GetDeviceTemperatureResponse:
+    """
+    """
+    payload = response.pop('payload')
+    return GetDeviceTemperatureResponse(
+        count=response['count'],
+        errors=response['errors'],
+        ok=response['ok'],
+        total_count=response['total_count'],
+        payload=[GetDeviceListTemperaturePayloadResponse(**item) for item in payload]
     )
 
 
