@@ -149,6 +149,14 @@ class BillingApiSdk:
 
     def get_device_battery_level(self, device_id: UUID) -> GetDeviceBatteryLevelResponse:
         """
+        It gets the battery level value of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+
+        Returns:
+          GetDeviceBatteryLevelResponse: response about device battery level value
+        [GetDeviceBatteryLevelResponse](GetDeviceBatteryLevelResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
@@ -162,6 +170,14 @@ class BillingApiSdk:
 
     def get_device_clock(self, device_id: UUID) -> GetDeviceClockResponse:
         """
+        It gets the clock data of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+
+        Returns:
+          GetDeviceClockResponse: response about device clock data
+        [GetDeviceClockResponse](GetDeviceClockResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
@@ -175,6 +191,14 @@ class BillingApiSdk:
 
     def get_device_event(self, device_id: UUID) -> GetDeviceEventResponse:
         """
+        It gets the events of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+
+        Returns:
+          GetDeviceEventResponse: response about device events
+        [GetDeviceEventResponse](GetDeviceEventResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
@@ -188,6 +212,14 @@ class BillingApiSdk:
 
     def get_device_profile(self, device_id: UUID) -> GetDeviceProfileResponse:
         """
+        It gets the time profiles of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+
+        Returns:
+          GetDeviceProfileResponse: response about device time profiles
+        [GetDeviceProfileResponse](GetDeviceProfileResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
@@ -201,6 +233,14 @@ class BillingApiSdk:
 
     def get_device_temperature(self, device_id: UUID) -> GetDeviceTemperatureResponse:
         """
+        It gets the temperature info of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+
+        Returns:
+          GetDeviceTemperatureResponse: response about device temperature info
+        [GetDeviceTemperatureResponse](GetDeviceTemperatureResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
 
