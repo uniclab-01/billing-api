@@ -17,6 +17,9 @@ extra:
   search:
   language: 'en, ru'
 
+extra_css:
+  - docs/css/extra.css
+
 nav:
   - Home:
       index.md
