@@ -5,7 +5,8 @@ repo_url: https://github.com/uniclab-01/billing-api
 theme:
   name: material
 
-#plugins:
+plugins:
+  - search
 # - mkdocstrings:
 #    default_handler: python
 #    handlers:
