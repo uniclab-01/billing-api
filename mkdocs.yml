@@ -7,8 +7,8 @@ theme:
 
 plugins:
   - search
-  - mkdocstrings
-#    default_handler: python
+  - mkdocstrings:
+    default_handler: python
 #    handlers:
 #      python:
 #        output: markdown
