@@ -147,106 +147,176 @@ class BillingApiSdk:
         response.raise_for_status()
         return get_device_value_structure(response.json())
 
-    def get_device_battery_level(self, device_id: UUID) -> GetDeviceBatteryLevelResponse:
+    def get_device_battery_level(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceBatteryLevelResponse:
         """
         It gets the battery level value of device
 
         Args:
           device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices battery level value to return.
+          offset (Optional[int]): The offset of the first device battery level value to return.
 
         Returns:
           GetDeviceBatteryLevelResponse: response about device battery level value
         [GetDeviceBatteryLevelResponse](GetDeviceBatteryLevelResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
 
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/battery-level',
+            params=query_params,
             headers=auth_header,
         )
         response.raise_for_status()
         return get_device_battery_level_structure(response.json())
 
-    def get_device_clock(self, device_id: UUID) -> GetDeviceClockResponse:
+    def get_device_clock(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceClockResponse:
         """
         It gets the clock data of device
 
         Args:
           device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices clock data value to return.
+          offset (Optional[int]): The offset of the first device clock data value to return.
 
         Returns:
           GetDeviceClockResponse: response about device clock data
         [GetDeviceClockResponse](GetDeviceClockResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
 
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/clocks',
+            params=query_params,
             headers=auth_header,
         )
         response.raise_for_status()
         return get_device_clock_structure(response.json())
 
-    def get_device_event(self, device_id: UUID) -> GetDeviceEventResponse:
+    def get_device_event(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceEventResponse:
         """
-        It gets the events of device
+        It gets events of device
 
         Args:
           device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices events value to return.
+          offset (Optional[int]): The offset of the first device events value to return.
 
         Returns:
           GetDeviceEventResponse: response about device events
         [GetDeviceEventResponse](GetDeviceEventResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
 
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/events',
+            params=query_params,
             headers=auth_header,
         )
         response.raise_for_status()
         return get_device_event_structure(response.json())
 
-    def get_device_profile(self, device_id: UUID) -> GetDeviceProfileResponse:
+    def get_device_profile(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceProfileResponse:
         """
         It gets the time profiles of device
 
         Args:
           device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices time profiles value to return.
+          offset (Optional[int]): The offset of the first device time profiles value to return.
 
         Returns:
           GetDeviceProfileResponse: response about device time profiles
         [GetDeviceProfileResponse](GetDeviceProfileResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
 
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/profiles',
+            params=query_params,
             headers=auth_header,
         )
         response.raise_for_status()
         return get_device_profile_structure(response.json())
 
-    def get_device_temperature(self, device_id: UUID) -> GetDeviceTemperatureResponse:
+    def get_device_temperature(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceTemperatureResponse:
         """
         It gets the temperature info of device
 
         Args:
           device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices time profiles value to return.
+          offset (Optional[int]): The offset of the first device time profiles value to return.
 
         Returns:
           GetDeviceTemperatureResponse: response about device temperature info
         [GetDeviceTemperatureResponse](GetDeviceTemperatureResponse.md)
         """
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
 
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/temperatures',
+            params=query_params,
             headers=auth_header,
         )
         response.raise_for_status()
