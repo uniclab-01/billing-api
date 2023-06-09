@@ -4,6 +4,7 @@ from uuid import UUID
 
 import requests
 
+from unicboard_billing_sdk.constants import ResourceTypeEnum
 from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, \
     GetDeviceValueResponse, GetDeviceBatteryLevelResponse, GetDeviceClockResponse, GetDeviceEventResponse, \
     GetDeviceProfileResponse, GetDeviceTemperatureResponse
@@ -27,16 +28,18 @@ class BillingApiSdk:
         self._api_token = api_token
 
     def get_device_list_info(
-            self,
-            limit: Optional[int] = None,
-            offset: Optional[int] = None,
-            filters: Optional[List[Dict[str, Any]]] = None,
-            sorts: Optional[List[Tuple[str, str]]] = None,
+        self,
+        resource_type: Optional[ResourceTypeEnum],
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        filters: Optional[List[Dict[str, Any]]] = None,
+        sorts: Optional[List[Tuple[str, str]]] = None,
     ) -> GetDeviceListInfoResponse:
         """
         It makes a GET request to the `/api/v1/devices/info` endpoint, and returns the response as a
         `GetDeviceListInfoResponse` object
         Args:
+         resource_type (Optional[str]): filter by resource type - use ResourceTypeEnum for choose value
          limit (Optional[int]): The maximum number of devices to return.
          offset (Optional[int]): The offset of the first device to return.
          filters (Optional[List[Dict[str, Any]]]): A list of dictionaries, each of which contains a key and a value.
@@ -51,6 +54,7 @@ class BillingApiSdk:
 
         auth_header = {'Authorization': f'Bearer {self._api_token}'}
         query_params: Dict[str, Any] = {
+            "resource_type": resource_type.value if resource_type is not None else None,
             "filter": filters,
             "sort": sorts,
         }
