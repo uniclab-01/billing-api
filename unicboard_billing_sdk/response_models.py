@@ -241,10 +241,12 @@ class GetDeviceListBatteryLevelPayloadResponse(NamedTuple):
 
     Parameters:
         device_id (UUID): device system identifier
+        battery_id (UUID): identifier of device battery
         date (datetime): date of value
         value (float): value of battery level
     """
     device_id: UUID
+    battery_id: int
     date: datetime
     value: Optional[float]
 
@@ -419,3 +421,39 @@ class GetDeviceTemperatureResponse(NamedTuple):
     ok: bool
     total_count: int
     payload: List[GetDeviceListTemperaturePayloadResponse]
+
+
+class GetDeviceListUptimePayloadResponse(NamedTuple):
+    """
+    Device temperature values
+
+    Parameters:
+        device_id (UUID): device system identifier
+        channel_id (UUID): device channel system identifier
+        channel_serial_number (int): channel serial number (1,2,3,4,5)
+        date (datetime): value of date
+        value (float): value of uptime
+    """
+    device_id: UUID
+    channel_id: UUID
+    channel_serial_number: int
+    date: datetime
+    uptime_s: float
+
+
+class GetDeviceUptimeResponse(NamedTuple):
+    """
+    Device temperature info list
+
+    Parameters:
+        count (int): object's limit count
+        errors (any): presence of errors
+        ok (bool): validity
+        total_count (int): object's total count
+        payload (list): [GetDeviceListUptimePayloadResponse](GetDeviceListUptimePayloadResponse.md)
+    """
+    count: int
+    errors: List[Any]
+    ok: bool
+    total_count: int
+    payload: List[GetDeviceListUptimePayloadResponse]

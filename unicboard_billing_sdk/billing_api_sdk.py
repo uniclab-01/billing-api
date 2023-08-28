@@ -7,7 +7,7 @@ import requests
 from unicboard_billing_sdk.constants import ResourceTypeEnum
 from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, \
     GetDeviceValueResponse, GetDeviceBatteryLevelResponse, GetDeviceClockResponse, GetDeviceEventResponse, \
-    GetDeviceProfileResponse, GetDeviceTemperatureResponse
+    GetDeviceProfileResponse, GetDeviceTemperatureResponse, GetDeviceUptimeResponse
 from unicboard_billing_sdk.utils import get_device_value_structure, get_device_info_structure, \
     get_device_list_info_structure, get_device_battery_level_structure, get_device_clock_structure, \
     get_device_event_structure, get_device_profile_structure, get_device_temperature_structure
@@ -320,6 +320,41 @@ class BillingApiSdk:
         response = requests.get(
             f'{self._api_billing_url}/'
             f'api/v1/devices/{str(device_id)}/temperatures',
+            params=query_params,
+            headers=auth_header,
+        )
+        response.raise_for_status()
+        return get_device_temperature_structure(response.json())
+
+    def get_device_uptime(
+        self,
+        device_id: UUID,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+    ) -> GetDeviceUptimeResponse:
+        """
+        It gets the temperature info of device
+
+        Args:
+          device_id (UUID): The UUID of the device you want to get information about.
+          limit (Optional[int]): The maximum number of devices time profiles value to return.
+          offset (Optional[int]): The offset of the first device time profiles value to return.
+
+        Returns:
+          GetDeviceTemperatureResponse: response about device temperature info
+        [GetDeviceTemperatureResponse](GetDeviceTemperatureResponse.md)
+        """
+        auth_header = {'Authorization': f'Bearer {self._api_token}'}
+        query_params: Dict[str, Any] = {}
+
+        if limit is not None:
+            query_params['limit'] = limit
+        if offset is not None:
+            query_params['offset'] = offset
+
+        response = requests.get(
+            f'{self._api_billing_url}/'
+            f'api/v1/devices/{str(device_id)}/uptimes',
             params=query_params,
             headers=auth_header,
         )
