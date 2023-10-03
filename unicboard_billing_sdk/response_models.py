@@ -154,7 +154,7 @@ class GetDeviceListInfoPayloadResponse(NamedTuple):
     device_channel: List[DeviceChannelResponseModel]
     device_manufacturer: DeviceManufacturerResponseModel
     device_modification: DeviceModificationResponseModel
-    date_produced: datetime
+    date_produced: Optional[datetime]
     firmware_version: Optional[str]
     hardware_version: Optional[str]
     id: UUID
@@ -215,6 +215,7 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     value_type: str
     kind: str
     tariff_number: int
+    journal_data_type: Dict[str, Any]
 
 
 class GetDeviceValueResponse(NamedTuple):
