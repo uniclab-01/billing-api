@@ -4,7 +4,7 @@ from uuid import UUID
 
 import requests
 
-from unicboard_billing_sdk.constants import ResourceTypeEnum
+from unicboard_billing_sdk.constants import ResourceTypeEnum, IntervalSelectValue
 from unicboard_billing_sdk.response_models import GetDeviceListInfoResponse, GetDeviceInfoResponse, \
     GetDeviceValueResponse, GetDeviceBatteryLevelResponse, GetDeviceClockResponse, GetDeviceEventResponse, \
     GetDeviceProfileResponse, GetDeviceTemperatureResponse, GetDeviceUptimeResponse
@@ -120,7 +120,9 @@ class BillingApiSdk:
             self,
             devices_id: List[UUID],
             period_from: datetime,
+            iteration_interval: IntervalSelectValue.day,
             period_to: datetime = None,
+            end_of_day: bool = True,
     ) -> GetDeviceValueResponse:
         """
         It gets the value of a device
@@ -129,6 +131,8 @@ class BillingApiSdk:
           devices_id (List[UUID]): List[UUID] - list of device IDs
           period_from (datetime): The start of the period for which you want to get the data.
           period_to (datetime): datetime = None
+          iteration_interval (IntervalSelectValue): = IntervalSelectValue.day  iteration interval
+          end_of_day (bool): = True Show values of the end of day
 
         Returns:
           GetDeviceValueResponse: response about device value
@@ -138,6 +142,8 @@ class BillingApiSdk:
         query_params: Dict[str, Any] = {
             "period_from": period_from,
             "period_to": period_to,
+            "end_of_day": end_of_day,
+            "iteration_interval": iteration_interval.value,
         }
         devices_id = [str(device_id) for device_id in devices_id]
 

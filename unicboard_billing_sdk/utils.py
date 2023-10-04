@@ -101,6 +101,9 @@ def get_device_value_payload_structure(payload: Dict[str, Any]) -> GetDeviceChan
             kind=payload['kind'],
             tariff_number=payload['tariff_number'],
             journal_data_type=payload['journal_data_type'],
+            meter_id=payload['meter_id'],
+            last_value=payload.get('last_value', None),
+            last_value_date=payload.get('last_value_date', None),
         )
 
 

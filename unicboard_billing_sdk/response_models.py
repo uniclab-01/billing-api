@@ -193,7 +193,7 @@ class GetDeviceInfoResponse(NamedTuple):
     payload: GetDeviceListInfoPayloadResponse
 
 
-class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
+class GetDeviceChannelValuePayloadResponse(NamedTuple):
     """
     Device channel values
 
@@ -205,6 +205,9 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
         value (float): product of value_raw and value_multiplier (recalculated values)
         value_raw (float): initial value
         value_type (str): device_data(meter reading), interpolated_linear(interpolated reading)
+        meter_id (str): meter identifier
+        last value Optional(float): last value
+        last_value_date Optional(datetime): last value date
     """
     channel_number: int
     date: datetime
@@ -216,6 +219,9 @@ class GetDeviceChannelValuePayloadResponse(NamedTuple):  #
     kind: str
     tariff_number: int
     journal_data_type: Dict[str, Any]
+    meter_id: UUID
+    last_value: Optional[float]
+    last_value_date: Optional[datetime]
 
 
 class GetDeviceValueResponse(NamedTuple):
