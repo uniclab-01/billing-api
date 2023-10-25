@@ -120,7 +120,7 @@ class BillingApiSdk:
             self,
             devices_id: List[UUID],
             period_from: datetime,
-            iteration_interval: IntervalSelectValue.day,
+            iteration_interval: IntervalSelectValue = IntervalSelectValue.day,
             period_to: datetime = None,
             end_of_day: bool = True,
     ) -> GetDeviceValueResponse:
